@@ -7,7 +7,7 @@ def main():
     parser = argparse.ArgumentParser(description="Эксперименты МТУСИ — Изменение гиперпараметров")
     parser.add_argument("--model", type=str, default="yolov8n.pt", help="Название модели")
     parser.add_argument("--epochs", type=int, default=50, help="Количество эпох")
-    parser.add_argument("--lr", type=float, default=0.1, help="Стартовый Learning Rate (по дефолту 0.01)")
+    parser.add_argument("--lr", type=float, default=0.01, help="Стартовый Learning Rate (по дефолту 0.01)")
     args = parser.parse_args()
 
     # Автоматически проверяем: если на втором компе есть CUDA (видеокарта NVIDIA), включаем её
