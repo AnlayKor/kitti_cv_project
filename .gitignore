@@ -1,7 +1,3 @@
-.idea/
-venv/
-.venv/
-# Сюда добавьте название папки с датасетом, например:
-data/
-datasets/
-kitti-8/
+*
+!results/
+!results/**
