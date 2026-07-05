@@ -1,0 +1,15 @@
+path: ./data/processed
+train: train/images
+val: val/images
+test: test/images
+
+nc: 8
+names:
+  0: Person_sitting
+  1: car
+  2: cyclist
+  3: misc
+  4: pedestrian
+  5: tram
+  6: truck
+  7: van
