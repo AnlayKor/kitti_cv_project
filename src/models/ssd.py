@@ -15,7 +15,7 @@ def get_ssd_model(num_classes=8):
     model.head = SSDHead(
         in_channels=in_channels, 
         num_anchors=num_anchors, 
-        num_classes=num_classes + 1  # +1 класс на фон
+        num_classes=num_classes + 1
     )
     
     print(f"[Конфигурация] Выходные слои SSD успешно адаптированы под {num_classes} классов KITTI.")
