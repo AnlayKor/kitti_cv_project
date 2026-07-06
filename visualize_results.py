@@ -1,9 +1,7 @@
-# visualize_results.py
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Установка классического академического стиля графиков
 if 'seaborn-v0_8-whitegrid' in plt.style.available:
     plt.style.use('seaborn-v0_8-whitegrid')
 else:
@@ -20,7 +18,6 @@ plt.rcParams.update({
 
 
 def load_csv_data(folder_name):
-    """Вспомогательная функция для безопасного чтения результатов из папок"""
     path = os.path.join("results", folder_name, "results.csv")
     if not os.path.exists(path):
         print(f"[Предупреждение] Файл не найден: {path}. Будет построен сбалансированный тренд.")
@@ -35,10 +32,7 @@ def load_csv_data(folder_name):
 
 
 def plot_real_loss_curves():
-    """
-    1. Построение графиков loss-функций (зависимость ошибки от эпохи)
-    на основе реальных файлов results.csv из папок экспериментов YOLOv8
-    """
+ 
     plt.figure(figsize=(9, 5))
 
     experiments = {
@@ -60,7 +54,6 @@ def plot_real_loss_curves():
                 total_loss = df['train/box_loss'] + df['train/cls_loss']
                 plt.plot(df['epoch'], total_loss, label=label, color=colors[label], linestyle=styles[label],
                          linewidth=2)
-                print(f"[Успех] Реальные данные лоссов из {path} успешно добавлены на график.")
             except Exception as e:
                 print(f"[Ошибка] Не удалось обработать файл {path}: {e}")
         else:
@@ -83,13 +76,10 @@ def plot_real_loss_curves():
     plt.tight_layout()
     plt.savefig("loss_learning_rate_comparison.png", dpi=300)
     plt.close()
-    print("[Готово] Реальный график лоссов сохранен как: loss_learning_rate_comparison.png")
 
 
 def plot_metrics_curves():
-    """
-    2. Сравнительный график mAP50 для пяти архитектур (RT-DETR-L ограничен 30 эпохами)
-    """
+   
     plt.figure(figsize=(10, 5.5))
 
     d_y8 = load_csv_data("yolov8n_lr_0.01")
@@ -135,16 +125,12 @@ def plot_metrics_curves():
     plt.tight_layout()
     plt.savefig("architecture_map50_comparison.png", dpi=300)
     plt.close()
-    print("[Успех] Сравнительный график метрик качества сохранен.")
 
 
 def plot_parameter_dependency():
-    """
-    3. Построение графика зависимости качества от параметров (Влияние Batch Size на SSD300)
-    """
+  
     plt.figure(figsize=(7.5, 5))
 
-    # Теперь здесь честно исследуется влияние размера пакетов для SSD300
     batches = [
         'Пакет (Batch = 4)\nВысокий шум градиента',
         'Пакет (Batch = 16)\nУмеренная осцилляция',
@@ -170,8 +156,6 @@ def plot_parameter_dependency():
 
 
 if __name__ == "__main__":
-    print("=== ИНИЦИАЛИЗАЦИЯ АВТОМАТИЧЕСКОЙ ВИЗУАЛИЗАЦИИ МЕТРИК МТУСИ ===")
     plot_real_loss_curves()
     plot_metrics_curves()
     plot_parameter_dependency()
-    print("=== ВСЕ ГРАФИКИ УСПЕШНО СФОРМИРОВАНЫ В КОРНЕ ПРОЕКТА ===")
