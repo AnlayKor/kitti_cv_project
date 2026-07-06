@@ -8,7 +8,7 @@ from src.models.ssd import get_ssd_model
 def main():
     parser = argparse.ArgumentParser(description="Эксперименты МТУСИ — Запуск стабильного обучения SSD")
     parser.add_argument("--epochs", type=int, default=50, help="Количество эпох")
-    parser.add_argument("--batch", type=int, default=32, help="Размер Batch Size (4 или 32)")
+    parser.add_argument("--batch", type=int, default=16, help="Размер Batch Size (4 или 32)")
     args = parser.parse_args()
 
     current_device = 0 if torch.cuda.is_available() else 'cpu'
